@@ -97,14 +97,14 @@ To run this project on your local machine, follow these steps:
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repo-link>
-    cd <your-repo-name>
+    git clone https://github.com/muanderson/Handwritten-digit-and-letter-recogniser
+    cd Handwritten-digit-and-letter-recogniser
     ```
 
 2.  **Create and activate the Conda environment:**
     ```bash
-    conda create --name mnist-mlops python=3.9
-    conda activate mnist-mlops
+    conda create --name ENVIRONMENT_NAME python=3.9
+    conda activate ENVIRONMENT_NAME
     ```
 
 3.  **Install dependencies:**
