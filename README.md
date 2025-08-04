@@ -1,6 +1,6 @@
 # Handwritten digit and letter recogniser
 
-This is an extension of a previous project [Handwritten digit recogniser]([https://huggingface.co/spaces/muanderson/Digit_prediction](https://github.com/muanderson/Handwritten-digit-recogniser). This work has been extended by instead training a new model (deeper CNN architecture) on EMNIST data, and updating the input to take multiple digits and letters, returning both predictions and grad-CAM visualisations in real time.
+This is an extension of a previous project **[Handwritten digit recogniser](https://github.com/muanderson/Handwritten-digit-recogniser])**. This work has been extended by instead training a new model (deeper CNN architecture) on **[EMNIST dataset](https://www.kaggle.com/datasets/crawford/emnist])**, and updating the input to take multiple digits and letters, returning both predictions and grad-CAM visualisations in real time.
 
 ---
 
@@ -8,7 +8,7 @@ This is an extension of a previous project [Handwritten digit recogniser]([https
 
 You can try out the live application, deployed on Hugging Face Spaces, at the link below. Draw a combination of digits from 0 to 9 and lower/upper case letters, and see the model's prediction in real-time. Note: performance is not 100% accurate, with a model test F1 of approximately 0.87.
 
-**[➡️ Live Demo on Hugging Face Spaces]([https://huggingface.co/spaces/muanderson/Digit_prediction](https://huggingface.co/spaces/muanderson/emnist-recogniser))**
+**[➡️ Live Demo on Hugging Face Spaces](https://huggingface.co/spaces/muanderson/emnist-recogniser)**
 
 ![Demo GIF of the application working](demo.gif)
 
