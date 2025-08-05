@@ -9,6 +9,7 @@ from data_loader import EMNISTDataset, transforms
 from engine import train_epoch
 from sklearn.model_selection import StratifiedKFold
 import pandas as pd
+from sklearn.utils import class_weight
 
 def seed_everything(seed=42):
     os.environ['PYTHONHASHSEED'] = str(seed)
@@ -32,9 +33,10 @@ def main():
         'device': torch.device("cuda:0" if torch.cuda.is_available() else "cpu"),
         'batch_size': 32,
         'n_splits': 5,
+        'use_class_weights': False,  
     }
 
-    mlflow.set_experiment("EMNIST Model Training Improved CNN")
+    mlflow.set_experiment("EMNIST Model Training Improved CNN grad-cam")
     os.makedirs(config['output_dir'], exist_ok=True)
 
     # Load dataset once
@@ -50,6 +52,25 @@ def main():
         with mlflow.start_run(run_name=f"Fold_{config['fold']}"):
             print(f"\n===== Starting Fold {config['fold']}/{config['n_splits']} =====")
             mlflow.log_params(config)
+
+            class_weights_tensor = None
+            if config['use_class_weights']:
+                # Extract labels for the training split to calculate class weights
+                train_labels = labels[train_idx]
+                
+                # --- Class weight calculation ---
+                class_weights = class_weight.compute_class_weight(
+                    'balanced',
+                    classes=np.unique(train_labels),
+                    y=train_labels
+                )
+                class_weights_tensor = torch.tensor(class_weights, dtype=torch.float).to(config['device'])
+                
+                # Log class weights to MLflow for tracking
+                mlflow.log_param("class_weights", class_weights_tensor.tolist())
+                print("Using class weights...")
+            else:
+                print("Not using class weights...")
 
             train_dataset = EMNISTDataset(
                 csv_path=config['csv_path'],
@@ -67,7 +88,8 @@ def main():
 
             model = CNN().to(config['device'])
 
-            best_val_acc, best_val_f1, best_model_path = train_epoch(model, train_loader, val_loader, config, config['device'])
+            # Pass class_weights_tensor to the training function
+            best_val_acc, best_val_f1, best_model_path = train_epoch(model, train_loader, val_loader, config, config['device'], class_weights=class_weights_tensor)
 
             if best_model_path and os.path.exists(best_model_path):
                 mlflow.pytorch.log_model(model, "model", registered_model_name=f"emnist-cnn-fold-{config['fold']}")

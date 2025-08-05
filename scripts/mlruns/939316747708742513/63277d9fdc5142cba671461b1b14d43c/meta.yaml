@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Matthew/Documents/EMNIST/Handwritten-digit-recogniser-extended/scripts/mlruns/939316747708742513/63277d9fdc5142cba671461b1b14d43c/artifacts
+end_time: 1754075093809
+entry_point_name: ''
+experiment_id: '939316747708742513'
+lifecycle_stage: active
+run_id: 63277d9fdc5142cba671461b1b14d43c
+run_name: Fold_4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1754071936200
+status: 3
+tags: []
+user_id: Matthew

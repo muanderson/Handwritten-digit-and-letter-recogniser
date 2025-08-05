@@ -1,0 +1,23 @@
+artifact_path: file:///C:/Users/Matthew/Documents/EMNIST/Handwritten-digit-recogniser-extended/scripts/mlruns/542069035371815318/models/m-f4ba7a8376184cbeacdb556664b4a99c/artifacts
+flavors:
+  python_function:
+    config:
+      device: null
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pytorch
+    pickle_module_name: mlflow.pytorch.pickle_module
+    python_version: 3.9.23
+  pytorch:
+    code: null
+    model_data: data
+    pytorch_version: 2.5.1
+mlflow_version: 3.1.4
+model_id: m-f4ba7a8376184cbeacdb556664b4a99c
+model_size_bytes: 1628909
+model_uuid: m-f4ba7a8376184cbeacdb556664b4a99c
+prompts: null
+run_id: 97208262d3a247909621a7d5bdddb854
+utc_time_created: '2025-07-31 19:20:01.423302'

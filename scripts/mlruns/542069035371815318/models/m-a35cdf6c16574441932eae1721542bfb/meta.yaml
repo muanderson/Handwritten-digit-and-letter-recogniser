@@ -1,0 +1,10 @@
+artifact_location: file:///C:/Users/Matthew/Documents/EMNIST/Handwritten-digit-recogniser-extended/scripts/mlruns/542069035371815318/models/m-a35cdf6c16574441932eae1721542bfb/artifacts
+creation_timestamp: 1753994381798
+experiment_id: '542069035371815318'
+last_updated_timestamp: 1753994385613
+model_id: m-a35cdf6c16574441932eae1721542bfb
+model_type: null
+name: model
+source_run_id: 29d2f498e26d4c0c883284ae86c943c2
+status: 2
+status_message: null

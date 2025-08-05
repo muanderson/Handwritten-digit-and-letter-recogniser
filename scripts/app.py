@@ -1,5 +1,3 @@
-# Save this file as app.py
-
 from flask import Flask, request, jsonify, send_from_directory
 from PIL import Image, ImageOps
 import torch
@@ -18,7 +16,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model = CNN().to(device)
 
 # This should be the model trained on EMNIST with 62 classes.
-model_path = r'C:/Users/Matthew/Documents/EMNIST/Handwritten-digit-recogniser-extended/scripts/models/best_model_fold_5.pt' 
+model_path = 'best_model_fold_5.pt' 
 
 if not os.path.exists(model_path):
     raise FileNotFoundError(f"Model file not found at {model_path}. Please place your trained .pt file here.")
@@ -54,12 +52,11 @@ class GradCAM:
         self.model.zero_grad()
         output = self.model(input_tensor)
         
-        # Use the specific class index for the backward pass
         if class_idx is None:
             class_idx = output.argmax(dim=1).item()
-        
-        output[0][class_idx].backward(retain_graph=True)
-        
+            
+        output[0][class_idx].backward() 
+
         pooled_gradients = torch.mean(self.gradients, dim=[0, 2, 3])
         activations = self.activations.detach()
         
@@ -73,7 +70,7 @@ class GradCAM:
         return heatmap
 
 # Initialise Grad-CAM on the last convolutional layer of the model
-grad_cam = GradCAM(model=model, target_layer=model.conv3)
+grad_cam = GradCAM(model, model.conv3)
 
 
 def generate_heatmap_image(heatmap_data, original_size=(28, 28)):

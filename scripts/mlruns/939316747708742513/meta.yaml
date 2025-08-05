@@ -1,0 +1,6 @@
+artifact_location: file:///C:/Users/Matthew/Documents/EMNIST/Handwritten-digit-recogniser-extended/scripts/mlruns/939316747708742513
+creation_time: 1754061507313
+experiment_id: '939316747708742513'
+last_update_time: 1754061507313
+lifecycle_stage: active
+name: EMNIST Model Training Improved CNN grad-cam

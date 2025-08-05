@@ -1,0 +1,10 @@
+Flask
+torch
+torchvision
+numpy
+Pillow
+opencv-python-headless
+transformers
+sentencepiece
+accelerate
+gunicorn

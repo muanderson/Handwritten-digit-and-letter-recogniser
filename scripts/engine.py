@@ -7,9 +7,12 @@ from tqdm import tqdm
 from torch.optim.lr_scheduler import ReduceLROnPlateau 
 import mlflow 
 
-def train_epoch(model, train_loader, val_loader, config, device):
+def train_epoch(model, train_loader, val_loader, config, device, class_weights=None):
     optimizer = torch.optim.Adam(model.parameters(), lr=config['learning_rate'])
-    criterion = nn.CrossEntropyLoss()
+    if class_weights is not None:
+        criterion = nn.CrossEntropyLoss(weight=class_weights)
+    else:
+        criterion = nn.CrossEntropyLoss()
     scheduler = ReduceLROnPlateau(
         optimizer,
         mode='max',
