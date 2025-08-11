@@ -59,21 +59,6 @@ You can try out the live application, deployed on Hugging Face Spaces, at the li
 ├─── requirements.txt          # Python dependencies
 └─── Dockerfile                # Instructions to build the application container
 ```
-
----
-
-## Methodology
-
-The project was executed in two main stages to build a robust and personalised model.
-
-### 1. Base Model Training
-
-First, a CNN was trained on the standard MNIST dataset. To ensure the model was robust and to select the best possible version, a 5-fold cross-validation strategy was used. Each fold was logged as a separate run in **MLflow**. I tracked key parameters (learning rate, epochs, etc.) and metrics (accuracy, F1-score) to compare the folds. The model from the best-performing fold (`best_model_fold_2.pt`) was saved and selected as the base model for the next stage.
-
-### 2. Fine-Tuning on Custom Data
-
-After training a general-purpose digit recogniser, a small dataset of 300 custom drawings (30 for each digit) was created. The best base model was then loaded, and its early convolutional layers were **frozen**. Only the final, fully-connected classification layers were retrained on this new dataset. This transfer learning approach was used to adapt the model to the characteristics of the inference module (e.g. drawing width). This fine-tuning process was also tracked as a separate experiment in MLflow.
-
 ---
 
 ## Technologies Used
@@ -123,13 +108,9 @@ To run this project on your local machine, follow these steps:
     # Train the base model on MNIST
     python train_with_mlflow.py
 
-    # Fine-tune the best model on your custom drawings
-    python fine_tune_with_mlflow.py
-    ```
-
 6.  **Run the prediction app:**
     ```bash
-    # Make sure you have the final fine-tuned model saved
+    # Make sure you have the final model saved
     python interact.py
     ```
     The application will be available at `http://127.0.0.1:5000` (or the port specified in the script).
