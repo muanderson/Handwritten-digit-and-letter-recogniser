@@ -26,7 +26,7 @@ You can try out the live application, deployed on Hugging Face Spaces, at the li
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 /Digit_Recogniser
