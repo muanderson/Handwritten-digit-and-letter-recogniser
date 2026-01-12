@@ -113,4 +113,4 @@ To run this project on your local machine, follow these steps:
     # Make sure you have the final model saved
     python interact.py
     ```
-    The application will be available at `http://127.0.0.1:5000` (or the port specified in the script).
+    The application will be available at `http://127.0.0.1:5000` if run locally.
